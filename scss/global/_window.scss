@@ -3,18 +3,15 @@
   font-size: 12pt;
 }
 
-.rollable {
-  &:hover,
-  &:focus {
-    color: #000;
-    text-shadow: 0 0 10px red;
-    cursor: pointer;
-  }
-}
-
 .roll-icon{
   max-width:23px;
   max-height:23px;
   border: 0px;
   margin-left:5px;
+  &:hover,
+  &:focus{
+    cursor:pointer;
+    color: #000;
+    filter: opacity(25%);
+  }
 }

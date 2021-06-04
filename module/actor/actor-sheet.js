@@ -9,8 +9,8 @@ export class PeculiarTalesActorSheet extends ActorSheet {
     return mergeObject(super.defaultOptions, {
       classes: ["peculiartales", "sheet", "actor"],
       template: "systems/peculiartales/templates/actor/actor-sheet.html",
-      width: 650,
-      height: 700,
+      width: 660,
+      height: 770,
       tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description" }]
     });
   }
@@ -47,6 +47,7 @@ export class PeculiarTalesActorSheet extends ActorSheet {
     const gear = [];
     const connections = [];
     const features = [];
+    const skills = [];
 
     // Iterate through items, allocating to containers
     // let totalWeight = 0;
@@ -65,12 +66,17 @@ export class PeculiarTalesActorSheet extends ActorSheet {
       else if (i.type === 'feature') {
         features.push(i);
       }
+
+      else if (i.type === 'skill'){
+        skills.push(i);
+      }
     }
 
     // Assign and return
     actorData.gear = gear;
     actorData.features = features;
     actorData.connections = connections;
+    actorData.skills = skills;
     actorData.game = game;
   }
 
