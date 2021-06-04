@@ -1,0 +1,36 @@
+{
+  "name": "peculiartales",
+  "title": "Peculiar Tales",
+  "description": "The Peculiar Tales system for FoundryVTT!",
+  "version": "0.1.0",
+  "minimumCoreVersion": "0.7.9",
+  "compatibleCoreVersion": "0.7.10",
+  "templateVersion": 2,
+  "author": "Sebastien Lemieux (demogorii)",
+  "esmodules": ["module/peculiartales.js"],
+  "styles": ["css/peculiartales.css"],
+  "scripts": [],
+  "packs": [],
+  "languages": [
+    {
+      "lang": "en",
+      "name": "English",
+      "path": "lang/en.json"
+    }
+  ],
+  "gridDistance": 5,
+  "gridUnits": "ft",
+  "primaryTokenAttribute": "moxie",
+  "secondaryTokenAttribute": "respite",
+  "url": "",
+  "manifest": "",
+  "download": "",
+  "license": "LICENSE.txt",
+  "dependencies": [
+    {
+      "name": "cardsupport",
+      "manifest": "https://github.com/spacemandev-git/fvtt-card-support/releases/download/latest/module.json",
+      "download": "https://github.com/spacemandev-git/fvtt-card-support/releases/download/latest/module.zip"
+    }
+  ]
+}

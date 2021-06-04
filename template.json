@@ -1,0 +1,128 @@
+{
+  "Actor": {
+    "types": ["character"],
+    "templates": {
+      "base": {
+        "moxie": {
+          "value": 4,
+          "min": 0,
+          "max": 4
+        },
+        "description": "",
+        "species":{
+          "value": ""
+        }
+      }
+    },
+    "character": {
+      "templates": ["base"],
+      "features":{
+        "value": "Perks, Traits and Advancements."
+      },
+      "connections":{
+        "value": ""
+      },
+      "drives":{
+        "value": "Peculiarity, Motivation and Vices."
+      },
+      "notes":{
+        "value": ""
+      },
+      "vocation":{
+        "value": ""
+      },
+      "team":{
+        "value": ""
+      },
+      "attributes": {
+        "level": {
+          "value": 1
+        },
+        "injured": {
+          "value": false,
+          "isCheckbox": true
+        },
+        "fatigued": {
+          "value": false,
+          "isCheckbox": true
+        },
+        "taxed": {
+          "value": false,
+          "isCheckbox": true
+        },
+        "stressed": {
+          "value": false,
+          "isCheckbox": true
+        },
+        "respite":{
+          "value": 2,
+          "min": 0,
+          "max": 2
+        },
+        "jobs":{
+          "value": 0
+        }
+      },
+      "abilities": {
+        "dexterity": {
+          "value": 5,
+          "min": 1,
+          "max": 8,
+          "mod": 0,
+          "suit": "Spades"
+        },
+        "fitness": {
+          "value": 5,
+          "min": 1,
+          "max": 8,
+          "mod": 0,
+          "suit": "Clubs"
+        },
+        "smarts": {
+          "value": 5,
+          "min": 1,
+          "max": 8,
+          "mod": 0,
+          "suit": "Diamonds"
+        },
+        "charisma": {
+          "value": 5,
+          "min": 1,
+          "max": 8,
+          "mod": 0,
+          "suit": "Hearts"
+        },
+        "assets": {
+          "value": 5,
+          "min": 1,
+          "max": 8,
+          "mod": 0
+        }
+      }
+    }
+  },
+  "Item": {
+    "types": ["item", "connection", "feature", "skill"],
+    "templates": {
+      "base": {
+        "description": ""
+      }
+    },
+    "item": {
+      "templates": ["base"],
+      "quantity": 1,
+      "weight": 0,
+      "value": 0,
+      "power": 0
+    },
+    "connection": {
+      "templates": ["base"]
+    },
+    "feature": {
+      "templates": ["base"]
+    },
+    "skill": {
+      "templates": ["base"]
+    }
+  }
+}

@@ -1,0 +1,20 @@
+.window-app {
+  font-family: $font-primary;
+  font-size: 12pt;
+}
+
+.rollable {
+  &:hover,
+  &:focus {
+    color: #000;
+    text-shadow: 0 0 10px red;
+    cursor: pointer;
+  }
+}
+
+.roll-icon{
+  max-width:23px;
+  max-height:23px;
+  border: 0px;
+  margin-left:5px;
+}
