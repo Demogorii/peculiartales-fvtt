@@ -21,6 +21,10 @@
   filter: opacity(25%);
 }
 
+.window-content {
+  background: url("../images/paper.png") !important;
+}
+
 .grid,
 .grid-2col {
   display: grid;
@@ -193,6 +197,7 @@
 .peculiartales .sheet-body .tab,
 .peculiartales .sheet-body .tab .editor {
   height: 100%;
+  background-image: url("../images/paper.png");
 }
 
 .peculiartales .tox .tox-editor-container {

@@ -19,11 +19,13 @@ export class PeculiarTalesActorSheet extends ActorSheet {
 
   /** @override */
   getData() {
-    const data = super.getData();
+    const data = super.getData().data;
     data.dtypes = ["String", "Number", "Boolean"];
     for (let attr of Object.values(data.data.attributes)) {
       attr.isCheckbox = attr.dtype === "Boolean";
     }
+
+    data.actor = super.getData().actor;
 
     // Prepare items.
     if (this.actor.data.type == 'character') {
@@ -162,6 +164,7 @@ export class PeculiarTalesActorSheet extends ActorSheet {
       async function drawCardWait(){
         let cardid = game.playerdeck.infinteDraw();
         let card = await game.playerdeck.getCardData(cardid);
+        card.id = cardid;
         return card;
       }
 
@@ -178,9 +181,17 @@ export class PeculiarTalesActorSheet extends ActorSheet {
 
           let labelPostboost = "" ;
 
-          if (result.boosting){
+          if (result.boosting && game.playerdeck._state.length > 1){
+
+            if (boostedCard.id === card.id)
+            {
+                console.log("PT | DUPLICATE CARD FOR BOOSTING. ROLLING ANOTHER.");
+                this._onRoll(event);
+                return;
+            }
+
             let boostingCardDetails = this._getCardDetails(boostedCard, dataset.label);
-            labelPostboost = '<br /><span style="color:red"><b>Boosted</b> </span> with ' + boostingCardDetails.cardname + "!";
+            labelPostboost = '<br /><span style="color:red"><b>Boosted</b> </span> with <b>' + boostingCardDetails.cardname + "</b>!";
             value = value + boostingCardDetails.cardvalue;
           }
 
@@ -208,7 +219,7 @@ export class PeculiarTalesActorSheet extends ActorSheet {
     }
 
     if (card.value === "JOKER") {
-      cardname = "a JOKER";
+      cardname = "a " + card.suit + " JOKER";
       cardvalue = 10;
     }
     else if (card.value === 11){ // TODO : FATIGUE CONSEQUENCES...
