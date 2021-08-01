@@ -51,10 +51,10 @@
           <div class="abilities grid grid-3col">
             {{#each data.abilities as |ability key|}}
               <div class="ability flexrow flex-group-center">
+                <img class="rollable roll-icon" data-roll="@abilities.{{key}}.value + @drawvalue" data-label="{{key}}" src="systems/peculiartales/images/{{ability.suit}}.png"/>
                 <label for="data.abilities.{{key}}.value" class="resource-label">{{key}}</label>
                 <input type="text" name="data.abilities.{{key}}.value" value="{{ability.value}}" data-dtype="Number"/>
                 <!--<input type="text" name="data.abilities.{{key}}.mod" value="{{ability.mod}}" data-dtype="Number"/>-->
-                <img class="rollable roll-icon" data-roll="@abilities.{{key}}.value + @drawvalue" data-label="{{key}}" src="systems/peculiartales/images/roll.png"/>
               </div>
             {{/each}}
             </div>
@@ -124,7 +124,7 @@
 
         {{!-- Description Tab --}}
         <div class="tab biography" data-group="primary" data-tab="description">
-            {{editor content=data.description target="data.description" button=true owner=owner editable=editable}}
+            {{editor content=data.description target="data.description" button=true owner=owner editable=true}}
         </div>
 
         {{!-- Owned Items Tab --}}
@@ -194,7 +194,7 @@
 
         {{!-- Drives Tab --}}
         <div class="tab drives" data-group="primary" data-tab="drives">
-            {{editor content=data.drives.value target="data.drives.value" button=true owner=owner editable=editable}}
+            {{editor content=data.drives.value target="data.drives.value" button=true owner=owner editable=true}}
         </div>
 
         {{!-- Owned Connections Tab --}}
@@ -220,7 +220,7 @@
 
         {{!-- Notes Tab --}}
         <div class="tab notes" data-group="primary" data-tab="notes">
-            {{editor content=data.data.notes.value target="data.data.notes.value" button=true owner=owner editable=editable}}
+            {{editor content=data.notes.value target="data.notes.value" button=true owner=owner editable=true}}
         </div>
 
     </section>
