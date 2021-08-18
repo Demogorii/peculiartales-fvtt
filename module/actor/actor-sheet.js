@@ -162,7 +162,7 @@ export class PeculiarTalesActorSheet extends ActorSheet {
     if (dataset.roll) {
 
       async function drawCardWait(){
-        let cardid = game.playerdeck.infinteDraw();
+        let cardid = game.playerdeck.infiniteDraw();
         let card = await game.playerdeck.getCardData(cardid);
         card.id = cardid;
         return card;

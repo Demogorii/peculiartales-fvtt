@@ -67,8 +67,7 @@ Hooks.once("decks.ready", async function(){
     });
   }
   else {
-    game.gmdeck = game.decks.get(gmdeckid._id);
-    game.gmdeck.shuffle();
+    game.gmdeck = new Deck(game.decks.get(gmdeckid._id));
   }
 
   const playerdeckid = game.folders.find((el) => el.name == "PlayerDeck");
@@ -89,8 +88,7 @@ Hooks.once("decks.ready", async function(){
     });
   }
   else{
-    game.playerdeck = game.decks.get(playerdeckid._id);
-    game.playerdeck.shuffle();
+    game.playerdeck = new Deck(game.decks.get(playerdeckid._id));
   }
 });
 
