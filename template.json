@@ -3,107 +3,163 @@
     "types": ["character"],
     "templates": {
       "base": {
-        "moxie": {
-          "value": 4,
+        "stress": {
+          "value": 0,
           "min": 0,
-          "max": 4
+          "max": 3
         },
-        "description": "",
-        "species":{
-          "value": ""
-        }
+        "description": ""
       }
     },
     "character": {
       "templates": ["base"],
-      "features":{
-        "value": "Perks, Traits and Advancements."
-      },
-      "connections":{
+      "species":{
         "value": ""
       },
-      "drives":{
-        "value": "Peculiarity, Motivation and Vices."
+      "background":{
+        "value": ""
       },
       "notes":{
-        "value": ""
-      },
-      "vocation":{
         "value": ""
       },
       "team":{
         "value": ""
       },
       "attributes": {
+        "leverage": {
+          "value": 0,
+          "min": 0,
+          "max": 10
+        },
         "level": {
-          "value": 1
+          "value": 1,
+          "min": 0,
+          "max": 10
         },
         "injured": {
           "value": false,
-          "isCheckbox": true
+          "isCheckbox": true,
+          "soak": 4
         },
         "fatigued": {
           "value": false,
-          "isCheckbox": true
+          "isCheckbox": true,
+          "soak": 2
         },
-        "taxed": {
+        "angry": {
           "value": false,
-          "isCheckbox": true
+          "isCheckbox": true,
+          "soak": 2
         },
-        "stressed": {
+        "afraid": {
           "value": false,
-          "isCheckbox": true
-        },
-        "respite":{
-          "value": 2,
-          "min": 0,
-          "max": 2
+          "isCheckbox": true,
+          "soak": 3
         },
         "jobs":{
           "value": 0
         }
       },
       "abilities": {
-        "dexterity": {
-          "value": 5,
+        "quickness": {
+          "value": 3,
           "min": 1,
-          "max": 8,
+          "max": 5,
           "mod": 0,
           "suit": "Spades"
         },
-        "fitness": {
-          "value": 5,
+        "body": {
+          "value": 3,
           "min": 1,
-          "max": 8,
+          "max": 5,
           "mod": 0,
           "suit": "Clubs"
         },
-        "smarts": {
-          "value": 5,
+        "mind": {
+          "value": 3,
           "min": 1,
-          "max": 8,
+          "max": 5,
           "mod": 0,
           "suit": "Diamonds"
         },
-        "charisma": {
-          "value": 5,
+        "resolve": {
+          "value": 3,
           "min": 1,
-          "max": 8,
+          "max": 5,
           "mod": 0,
           "suit": "Hearts"
+        }
+      },
+      "skills": {
+        "athletics": {
+           "suit": "Clubs",
+           "value": 0
         },
-        "assets": {
-          "value": 5,
-          "min": 1,
-          "max": 8,
-          "mod": 0,
-          "suit": "Assets"
+        "brawling": {
+           "suit": "Clubs",
+           "value": 0
+        },
+        "lowTech": {
+           "suit": "Clubs",
+           "value": 0
+        },
+        "strength": {
+           "suit": "Clubs",
+           "value": 0
+        },
+        "ballistics": {
+           "suit": "Spades",
+           "value": 0
+        },
+        "dexterity": {
+           "suit": "Spades",
+           "value": 0
+        },
+        "fastTalking": {
+           "suit": "Spades",
+           "value": 0
+        },
+        "stealth": {
+           "suit": "Spades",
+           "value": 0
+        },
+        "culture": {
+           "suit": "Diamonds",
+           "value": 0
+        },
+        "highTech": {
+           "suit": "Diamonds",
+           "value": 0
+        },
+        "perception": {
+           "suit": "Diamonds",
+           "value": 0
+        },
+        "science": {
+           "suit": "Diamonds",
+           "value": 0
+        },
+        "occult": {
+           "suit": "Heart",
+           "value": 0
+        },
+        "performance": {
+           "suit": "Heart",
+           "value": 0
+        },
+        "persuasion": {
+           "suit": "Heart",
+           "value": 0
+        },
+        "survival": {
+           "suit": "Heart",
+           "value": 0
         }
       }
     }
   },
   "Item": {
-    "types": ["item", "connection", "feature", "skill"],
+    "types": ["item", "contact"],
     "templates": {
       "base": {
         "description": ""
@@ -116,14 +172,9 @@
       "value": 0,
       "power": 0
     },
-    "connection": {
-      "templates": ["base"]
-    },
-    "feature": {
-      "templates": ["base"]
-    },
-    "skill": {
-      "templates": ["base"]
+    "contact": {
+      "templates": ["base"],
+      "value": 0
     }
   }
 }
