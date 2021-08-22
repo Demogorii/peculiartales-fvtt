@@ -4,7 +4,7 @@
   "description": "The Peculiar Tales system for FoundryVTT!",
   "version": "0.1.0",
   "minimumCoreVersion": "0.8.6",
-  "compatibleCoreVersion": "0.8.6",
+  "compatibleCoreVersion": "0.8.9",
   "templateVersion": 2,
   "author": "Sebastien Lemieux (demogorii)",
   "esmodules": ["module/peculiartales.js"],

@@ -173,17 +173,9 @@
     },
     "item": {
       "templates": ["base"],
-      "quantity": {
-        "value": 1,
-        "max": 100
-      },
-      "price": {
-        "value": "0/0"
-      },
-      "power": {
-        "value": 0,
-        "max": 100
-      },
+      "quantity": 1,
+      "price": "0/0",
+      "power": 0,
       "peculiar": {
         "value": false,
         "isCheckbox": true
