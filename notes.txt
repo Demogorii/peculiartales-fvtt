@@ -1,0 +1,26 @@
+TODO:
+X add button for players to add card to the river.
+* maybe prevent tiles to be deleted, they must be discarded (or discard on deletion?)
+X add way to take a card back from the table to the river.
+* sync river after discard hand from GM
+X limit right click options on river cards.
+* allow boosted rolls from character sheet UI
+X allow skill check to boost with suit
+X skills have a score now and can be rolled
+X improve statuses (injury, etc) to show stress mitigation and description of what it does?
+* connections can be rolled and have a score
+X moxie is now called stress
+* see cards in chat would be nice
+X show river cards differently in the hand and table would be a plus
+* Compute impact of statuses into rolls
+* Inventory list UI
+* Contact list UI and Roll and Model
+
+BUGS:
+* Clicking fast can go over river limits (hard to reproduce)
+X Dropping cards x,y position is in relation to local screen, not GM's screen, which means the card is dropped wherever.
+* Notes is written all smol
+X when player draw cards from their deck its finnicky... there is certainly an issue with slots because I lose 1 card if the GM adds 4 cards to river and I draw 3 from deck from a player, i lose 1 river card...
+* sometimes there are two deck folders at start and it causes issue with the playerdeck game id
+X flow de take envoie pas l'event de sync de river... pas considéré comme dans river jusqu'à temps qu'on add-to-river chatMessageOnPlayerAction
+X les pecnauds voient pas la river en bleu
