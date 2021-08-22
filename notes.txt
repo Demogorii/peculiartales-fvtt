@@ -10,11 +10,12 @@ X skills have a score now and can be rolled
 X improve statuses (injury, etc) to show stress mitigation and description of what it does?
 * connections can be rolled and have a score
 X moxie is now called stress
-* see cards in chat would be nice
+X see cards in chat would be nice
 X show river cards differently in the hand and table would be a plus
-* Compute impact of statuses into rolls
-* Inventory list UI
+X Compute impact of statuses into rolls
+X Inventory list UI
 * Contact list UI and Roll and Model
+* Allow to click on items to print them in chat.
 
 BUGS:
 * Clicking fast can go over river limits (hard to reproduce)

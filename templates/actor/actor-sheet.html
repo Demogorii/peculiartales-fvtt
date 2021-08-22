@@ -172,7 +172,10 @@
             <ol class="items-list">
                 <li class="item flexrow item-header">
                   <div class="item-image"></div>
-                  <div class="item-name">Name</div>
+                  <div class="item-name" style="flex-grow: 3">Name</div>
+                  <div class="item-name">Power</div>
+                  <div class="item-name">Quantity</div>
+                  <div class="item-name" style="flex-grow: 5">Summary</div>
                   <div class="item-controls">
                     <a class="item-control item-create" title="Create" data-type="item"><i class="fas fa-plus"></i> Add</a>
                   </div>
@@ -180,7 +183,10 @@
             {{#each actor.gear as |item id|}}
                 <li class="item flexrow" data-item-id="{{item._id}}">
                     <div class="item-image"><img src="{{item.img}}" title="{{item.name}}" width="24" height="24"/></div>
-                    <h4 class="item-name">{{item.name}}</h4>
+                    <h4 class="item-name" style="flex-grow: 3">{{item.name}}</h4>
+                    <h4 class="item-name">{{item.data.power}}</h4>
+                    <h4 class="item-name">{{item.data.quantity}}</h4>
+                    <h4 class="item-name" style="flex-grow: 5">{{summarize item.data.description}}</h4>
                     <div class="item-controls">
                         <a class="item-control item-edit" title="Edit"><i class="fas fa-edit"></i></a>
                         <a class="item-control item-delete" title="Delete"><i class="fas fa-trash"></i></a>

@@ -31,6 +31,11 @@ export class PeculiarTalesItemSheet extends ItemSheet {
   /** @override */
   getData() {
     const data = super.getData();
+    const itemData = data.data;
+
+    data.item = itemData;
+    data.data = itemData.data;
+
     return data;
   }
 

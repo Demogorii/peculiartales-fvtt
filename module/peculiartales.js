@@ -46,6 +46,12 @@ Hooks.once('init', async function() {
   Handlebars.registerHelper('toLowerCase', function(str) {
     return str.toLowerCase();
   });
+
+  Handlebars.registerHelper('summarize', function(str) {
+    let strippedString = str.replace(/(<([^>]+)>)/gi, "");
+    var firstLine = strippedString.split('\n')[0];
+    return firstLine;
+  });
 });
 
 Hooks.once("decks.ready", async function(){
