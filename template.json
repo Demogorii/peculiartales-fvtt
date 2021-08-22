@@ -61,99 +61,105 @@
         }
       },
       "abilities": {
-        "quickness": {
-          "value": 3,
-          "min": 1,
-          "max": 5,
-          "mod": 0,
-          "suit": "Spades"
-        },
         "body": {
           "value": 3,
           "min": 1,
           "max": 5,
           "mod": 0,
-          "suit": "Clubs"
+          "suit": "Clubs",
+          "skills":{
+            "athletics": {
+               "value": 0,
+               "max": 5
+            },
+            "brawling": {
+               "value": 0,
+               "max": 5
+            },
+            "lowTech": {
+               "value": 0,
+               "max": 5
+            },
+            "strength": {
+               "value": 0,
+               "max": 5
+            }
+          }
+        },
+        "quickness": {
+          "value": 3,
+          "min": 1,
+          "max": 5,
+          "mod": 0,
+          "suit": "Spades",
+          "skills": {
+            "ballistics": {
+               "value": 0,
+               "max": 5
+            },
+            "dexterity": {
+               "value": 0,
+               "max": 5
+            },
+            "fastTalking": {
+               "value": 0,
+               "max": 5
+            },
+            "stealth": {
+               "value": 0,
+               "max": 5
+            }
+          }
         },
         "mind": {
           "value": 3,
           "min": 1,
           "max": 5,
           "mod": 0,
-          "suit": "Diamonds"
+          "suit": "Diamonds",
+          "skills":{
+            "culture": {
+               "value": 0,
+               "max": 5
+            },
+            "highTech": {
+               "value": 0,
+               "max": 5
+            },
+            "perception": {
+               "value": 0,
+               "max": 5
+            },
+            "science": {
+               "value": 0,
+               "max": 5
+            }
+          }
         },
         "resolve": {
           "value": 3,
           "min": 1,
           "max": 5,
           "mod": 0,
-          "suit": "Hearts"
-        }
-      },
-      "skills": {
-        "athletics": {
-           "suit": "Clubs",
-           "value": 0
-        },
-        "brawling": {
-           "suit": "Clubs",
-           "value": 0
-        },
-        "lowTech": {
-           "suit": "Clubs",
-           "value": 0
-        },
-        "strength": {
-           "suit": "Clubs",
-           "value": 0
-        },
-        "ballistics": {
-           "suit": "Spades",
-           "value": 0
-        },
-        "dexterity": {
-           "suit": "Spades",
-           "value": 0
-        },
-        "fastTalking": {
-           "suit": "Spades",
-           "value": 0
-        },
-        "stealth": {
-           "suit": "Spades",
-           "value": 0
-        },
-        "culture": {
-           "suit": "Diamonds",
-           "value": 0
-        },
-        "highTech": {
-           "suit": "Diamonds",
-           "value": 0
-        },
-        "perception": {
-           "suit": "Diamonds",
-           "value": 0
-        },
-        "science": {
-           "suit": "Diamonds",
-           "value": 0
-        },
-        "occult": {
-           "suit": "Heart",
-           "value": 0
-        },
-        "performance": {
-           "suit": "Heart",
-           "value": 0
-        },
-        "persuasion": {
-           "suit": "Heart",
-           "value": 0
-        },
-        "survival": {
-           "suit": "Heart",
-           "value": 0
+          "suit": "Hearts",
+          "skills":{
+            "occult": {
+               "value": 0,
+               "max": 5
+            },
+            "performance": {
+               "value": 0,
+               "max": 5
+            },
+            "persuasion": {
+               "value": 0,
+               "max": 5
+            },
+            "survival": {
+               "value": 0,
+               "max": 5
+            }
+          }
         }
       }
     }
@@ -167,14 +173,29 @@
     },
     "item": {
       "templates": ["base"],
-      "quantity": 1,
-      "weight": 0,
-      "value": 0,
-      "power": 0
+      "quantity": {
+        "value": 1,
+        "max": 100
+      },
+      "price": {
+        "value": "0/0"
+      },
+      "power": {
+        "value": 0,
+        "max": 100
+      },
+      "peculiar": {
+        "value": false,
+        "isCheckbox": true
+      }
     },
     "contact": {
       "templates": ["base"],
-      "value": 0
+      "value": 1,
+      "max": 10,
+      "types": ["Criminal","Law Enforcement","Workers Union","Occult","Scientific", "Scymant", "Other"],
+      "type": "",
+      "maxAmount": 4
     }
   }
 }

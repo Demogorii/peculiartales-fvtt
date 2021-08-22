@@ -14,7 +14,7 @@
   margin-left: 5px;
 }
 
-.roll-icon:hover, .roll-icon:focus {
+.rollable:hover, .rollable:focus {
   cursor: pointer;
   color: #000;
   -webkit-filter: opacity(25%);

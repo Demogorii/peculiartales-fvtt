@@ -9,9 +9,10 @@ export class PeculiarTalesActorSheet extends ActorSheet {
     return mergeObject(super.defaultOptions, {
       classes: ["peculiartales", "sheet", "actor"],
       template: "systems/peculiartales/templates/actor/actor-sheet.html",
-      width: 660,
+      width: 800,
       height: 770,
-      tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description" }]
+      tabs: [{ navSelector: ".sheet-tabs", contentSelector: ".sheet-body", initial: "description" }],
+      resizable: false
     });
   }
 
@@ -47,9 +48,7 @@ export class PeculiarTalesActorSheet extends ActorSheet {
 
     // Initialize containers.
     const gear = [];
-    const connections = [];
-    const features = [];
-    const skills = [];
+    const contacts = [];
 
     // Iterate through items, allocating to containers
     // let totalWeight = 0;
@@ -61,24 +60,14 @@ export class PeculiarTalesActorSheet extends ActorSheet {
         gear.push(i);
       }
       // Append to features.
-      else if (i.type === 'connection') {
-        connections.push(i);
-      }
-      // Append to spells.
-      else if (i.type === 'feature') {
-        features.push(i);
-      }
-
-      else if (i.type === 'skill'){
-        skills.push(i);
+      else if (i.type === 'contact') {
+        contacts.push(i);
       }
     }
 
     // Assign and return
     actorData.gear = gear;
-    actorData.features = features;
-    actorData.connections = connections;
-    actorData.skills = skills;
+    actorData.contacts = contacts;
     actorData.game = game;
   }
 
@@ -173,11 +162,24 @@ export class PeculiarTalesActorSheet extends ActorSheet {
           let result = this._getCardDetails(card, dataset.label);
 
           let value = result.cardvalue;
-          let pretext = dataset.label[0].toUpperCase() + dataset.label.slice(1).toLowerCase();
+          let textLabel = dataset.label;
+          if (dataset.label.includes("."))
+          {
+            textLabel = textLabel.split(".")[1];
+          }
+          let pretext = textLabel[0].toUpperCase() + textLabel.slice(1).toLowerCase();
 
-          let label = dataset.label ? `<b>${pretext} skill check...</b>` : '';
+          if (pretext === "Fasttalking")
+            pretext = "Fast Talking";
 
-          let labelPreboost = label + '<br/>' + "Drew <b>" + result.cardname + "</b>!"
+          if (pretext === "Lowtech")
+            pretext = "Low Tech";
+
+          if (pretext === "Hightech")
+            pretext = "High Tech";
+          let label = dataset.label ? `<h2>${pretext} check...</h2>` : '';
+
+          let labelPreboost = label + "<h3>Drew <b>" + result.cardname + "</b>!</h3>"
 
           let labelPostboost = "" ;
 
@@ -191,7 +193,7 @@ export class PeculiarTalesActorSheet extends ActorSheet {
             }
 
             let boostingCardDetails = this._getCardDetails(boostedCard, dataset.label);
-            labelPostboost = '<br /><span style="color:red"><b>Boosted</b> </span> with <b>' + boostingCardDetails.cardname + "</b>!";
+            labelPostboost = '<h3><span style="color:red"><b>Boosted</b> </span> with <b>' + boostingCardDetails.cardname + "</b>!</h3>";
             value = value + boostingCardDetails.cardvalue;
           }
 
@@ -199,6 +201,16 @@ export class PeculiarTalesActorSheet extends ActorSheet {
           let roll = new Roll(dataset.roll, dataroll);
 
           let flavor = labelPreboost + labelPostboost;
+
+          let cardjournal = game.journal.get(card.id);
+          let boostedcardjournal = game.journal.get(boostedCard.id);
+
+          flavor += '<img style="width: 50%;" src="' + cardjournal.data.img + '" />';
+
+          if (labelPostboost)
+          {
+            flavor += '<img style="width: 50%;" src="' + boostedcardjournal.data.img + '" />';
+          }
 
           roll.roll().toMessage({
             speaker: ChatMessage.getSpeaker({ actor: this.actor }),
@@ -216,13 +228,18 @@ export class PeculiarTalesActorSheet extends ActorSheet {
     let skillsuit = "";
     if (this.actor.data.data.abilities[label]){
         skillsuit = this.actor.data.data.abilities[label].suit;
+    } else {
+        let str = label.split(".");
+        if (str && str[0] && str[1]){
+            skillsuit = this.actor.data.data.abilities[str[0]].suit;
+        }
     }
 
     if (card.value === "JOKER") {
       cardname = "a " + card.suit + " JOKER";
       cardvalue = 10;
     }
-    else if (card.value === 11){ // TODO : FATIGUE CONSEQUENCES...
+    else if (card.value === 11){
       cardname = "a Jack of " + card.suit;
       cardvalue = 5;
       if (card.suit === skillsuit){
@@ -267,32 +284,32 @@ export class PeculiarTalesActorSheet extends ActorSheet {
       }
     }
 
+    if (this.actor.data.data.attributes.afraid.value){
+      cardname = cardname + " (afraid: no river)";
+    }
+    if (this.actor.data.data.attributes.injured.value){
+        cardname = "" + cardname + " (injured: need teamwork)";
+    }
+
     return { cardname: cardname, cardvalue: cardvalue, boosting: boosting};
   }
 
   _updateCardForStatus(card, label, cardname, cardvalue){
-    if (this.actor.data.data.attributes.injured.value)
-    {
-      if (label === "dexterity" || label === "fitness")
-      {
-        cardvalue = 0;
-        cardname = "<s>" + cardname + "</s> (injured)";
-      }
-    }
+
     if (this.actor.data.data.attributes.fatigued.value)
     {
-      if (label === "smarts" || label === "charisma")
+      if (label.includes("body") || label.includes("quickness"))
       {
         cardvalue = 0;
         cardname = "<s>" + cardname + "</s> (fatigued)";
       }
     }
-    if (this.actor.data.data.attributes.taxed.value)
+    if (this.actor.data.data.attributes.angry.value)
     {
-      if (label === "assets")
+      if (label.includes("mind") || label.includes("resolve"))
       {
         cardvalue = 0;
-        cardname = "<s>" + cardname + "</s> (taxed)";
+        cardname = "<s>" + cardname + "</s> (angry)";
       }
     }
 
