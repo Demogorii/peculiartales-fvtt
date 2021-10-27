@@ -52,6 +52,15 @@ Hooks.once('init', async function() {
     var firstLine = strippedString.split('\n')[0];
     return firstLine;
   });
+
+  Handlebars.registerHelper('peculiarize', function(item) {
+    let itemname = item.name;
+    if (item.data.type)
+      itemname = item.name + " (" + item.data.type.toLowerCase() + ")";
+    if (item.data.stored)
+      itemname = "["+itemname+"]";
+    return itemname;
+  });
 });
 
 Hooks.once("decks.ready", async function(){

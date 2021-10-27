@@ -5,7 +5,6 @@
       "base": {
         "stress": {
           "value": 0,
-          "min": 0,
           "max": 3
         },
         "description": ""
@@ -13,6 +12,7 @@
     },
     "character": {
       "templates": ["base"],
+      "boostcheckbox": false,
       "species":{
         "value": ""
       },
@@ -168,26 +168,27 @@
     "types": ["item", "contact"],
     "templates": {
       "base": {
-        "description": ""
+        "description": "",
+        "noteroonis": ""
       }
     },
     "item": {
       "templates": ["base"],
       "quantity": 1,
-      "price": "0/0",
+      "price": "0",
+      "availability": "0",
       "power": 0,
       "peculiar": {
         "value": false,
         "isCheckbox": true
-      }
+      },
+      "type": ""
     },
     "contact": {
       "templates": ["base"],
-      "value": 1,
+      "power": 1,
       "max": 10,
-      "types": ["Criminal","Law Enforcement","Workers Union","Occult","Scientific", "Scymant", "Other"],
-      "type": "",
-      "maxAmount": 4
+      "type": ""
     }
   }
 }

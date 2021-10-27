@@ -24,6 +24,27 @@
   filter: opacity(25%);
 }
 
+.itemName:hover, .itemName:focus {
+  cursor: pointer;
+  color: #000;
+  -webkit-filter: opacity(25%);
+  filter: opacity(25%);
+}
+
+
 .window-content{
   background: url("../images/paper.png") !important;
+}
+
+.center {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+}
+.centerTxt {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 90%;
 }

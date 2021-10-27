@@ -80,6 +80,7 @@ export class PeculiarTalesActorSheet extends ActorSheet {
     // Everything below here is only needed if the sheet is editable
     if (!this.options.editable) return;
 
+    this.html = html;
     // Add Inventory Item
     html.find('.item-create').click(this._onItemCreate.bind(this));
 
@@ -100,6 +101,9 @@ export class PeculiarTalesActorSheet extends ActorSheet {
     // Rollable abilities.
     html.find('.rollable').click(this._onRoll.bind(this));
 
+    html.find('.itemName').click(this._onItemNameClick.bind(this));
+    html.find('.contactName').click(this._onContactNameClick.bind(this));
+
     // Drag events for macros.
     if (this.actor.owner) {
       let handler = ev => this._onDragStart(ev);
@@ -110,6 +114,62 @@ export class PeculiarTalesActorSheet extends ActorSheet {
       });
     }
   }
+
+ _onItemNameClick(ev)
+ {
+    const li = ev.currentTarget.closest(".item");
+    const item = duplicate(this.actor.getEmbeddedDocument("Item", li.dataset.itemId));
+    const itemData = item.data;
+
+    let actor = this.actor;
+    let speaker = ChatMessage.getSpeaker({ actor });
+
+    let imageString = "";
+
+    if (!item.img.includes("item-bag.svg"))
+      imageString = '<img style="width: 50%;" class="center" src="' + item.img + '"/>';
+
+   let descriptionString = "<h3><i>This item cannot be described...</i></h3>";
+   if (itemData.description)
+      descriptionString = "<h3><i>" + itemData.description + "</i></h3>";
+
+   let peculiarString = "";
+   if (itemData.type)
+      peculiarString = itemData.type.toLowerCase();
+
+    ChatMessage.create({
+      speaker,
+      content: '<h2>Observing "' + item.name + '"...</h2>' + imageString + descriptionString + '<h5 class="centerTxt">Quantity: ' + itemData.quantity + " - Price: " + itemData.price +  " - Avail.: " + itemData.availability + " - " + peculiarString + "</h5>"
+    },
+      { chatBubble: false });
+ }
+
+ _onContactNameClick(ev)
+ {
+    const li = ev.currentTarget.closest(".item");
+    const item = duplicate(this.actor.getEmbeddedDocument("Item", li.dataset.itemId));
+    const itemData = item.data;
+
+    let actor = this.actor;
+    let speaker = ChatMessage.getSpeaker({ actor });
+
+    let imageString = "";
+
+   let descriptionString = "<h3><i>This contact cannot be described...</i></h3>";
+   if (itemData.description)
+      descriptionString = "<h3><i>" + itemData.description + "</i></h3>";
+
+   let itemTypeString = "Unknown";
+
+   if (itemData.type)
+     itemTypeString = itemData.type;
+
+    ChatMessage.create({
+      speaker,
+      content: '<h2>Observing "' + item.name + '"...</h2>' + imageString + descriptionString + '<h5 class="contactTxt">Value: ' + itemData.power + " - Type: " + itemData.type + "</h5>"
+    },
+      { chatBubble: false });
+ }
 
   /**
    * Handle creating a new Owned Item for the actor using initial data defined in the HTML dataset
@@ -146,6 +206,7 @@ export class PeculiarTalesActorSheet extends ActorSheet {
   _onRoll(event) {
     event.preventDefault();
     const element = event.currentTarget;
+    element.style.pointerEvents = "none";
     const dataset = element.dataset;
 
     if (dataset.roll) {
@@ -183,7 +244,7 @@ export class PeculiarTalesActorSheet extends ActorSheet {
 
           let labelPostboost = "" ;
 
-          if (result.boosting && game.playerdeck._state.length > 1){
+          if ((result.boosting && game.playerdeck._state.length > 1) || (this.actor.data.data.boostcheckbox && game.playerdeck._state.length > 1)){
 
             if (boostedCard.id === card.id)
             {
@@ -205,12 +266,15 @@ export class PeculiarTalesActorSheet extends ActorSheet {
           let cardjournal = game.journal.get(card.id);
           let boostedcardjournal = game.journal.get(boostedCard.id);
 
-          flavor += '<img style="width: 50%;" src="' + cardjournal.data.img + '" />';
+          flavor += '<div style="text-align:center">';
+          flavor += '<img style="max-width: 45%; margin-left: auto; margin-right:auto;  border-radius: 8px;" src="' + cardjournal.data.img + '" />';
 
           if (labelPostboost)
           {
-            flavor += '<img style="width: 50%;" src="' + boostedcardjournal.data.img + '" />';
+            flavor += '<img style="max-width: 45%; margin-left: 5px; margin-right:auto; border-radius: 8px;" src="' + boostedcardjournal.data.img + '" />';
           }
+
+          flavor += '</div>';
 
           roll.roll().toMessage({
             speaker: ChatMessage.getSpeaker({ actor: this.actor }),
@@ -219,8 +283,8 @@ export class PeculiarTalesActorSheet extends ActorSheet {
         });
       });
     }
+    element.style.pointerEvents = "auto";
   }
-
   _getCardDetails(card, label){
     let cardname = "";
     let cardvalue = 0;
@@ -285,7 +349,7 @@ export class PeculiarTalesActorSheet extends ActorSheet {
     }
 
     if (this.actor.data.data.attributes.afraid.value){
-      cardname = cardname + " (afraid: no river)";
+      cardname = cardname + " (paranoid: no river)";
     }
     if (this.actor.data.data.attributes.injured.value){
         cardname = "" + cardname + " (injured: need teamwork)";
@@ -309,7 +373,7 @@ export class PeculiarTalesActorSheet extends ActorSheet {
       if (label.includes("mind") || label.includes("resolve"))
       {
         cardvalue = 0;
-        cardname = "<s>" + cardname + "</s> (angry)";
+        cardname = "<s>" + cardname + "</s> (upset)";
       }
     }
 
